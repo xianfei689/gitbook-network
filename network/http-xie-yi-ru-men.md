@@ -132,8 +132,7 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 `MIME type`还可以在尾部使用分号，添加参数。
 
 > ```
-> Content-Type:
->  text/html; charset=utf-8
+> Content-Type: text/html; charset=utf-8
 > ```
 
 上面的类型表明，发送的是网页，而且编码是UTF-8。
@@ -141,8 +140,7 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 客户端请求的时候，可以使用`Accept`字段声明自己可以接受哪些数据格式。
 
 > ```
-> Accept:
->  */*
+> Accept: */*
 > ```
 
 上面代码中，客户端声明自己可以接受任何格式的数据。
@@ -150,15 +148,9 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 `MIME type`不仅用在HTTP协议，还可以用在其他地方，比如HTML网页。
 
 > ```
-> <
-> meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /
-> >
-> <
-> !-- 等同于 --
-> >
-> <
-> meta charset="utf-8" /
-> >
+> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+> <!-- 等同于 -->
+> <meta charset="utf-8" /> 
 > ```
 
 ### 2.5 Content-Encoding 字段
@@ -166,21 +158,15 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 由于发送的数据可以是任何格式，因此可以把数据压缩后再发送。`Content-Encoding`字段说明数据的压缩方法。
 
 > ```
-> Content-Encoding:
->  gzip
->
-> Content-Encoding:
->  compress
->
-> Content-Encoding:
->  deflate
+> Content-Encoding: gzip
+> Content-Encoding: compress
+> Content-Encoding: deflate
 > ```
 
 客户端在请求时，用`Accept-Encoding`字段说明自己可以接受哪些压缩方法。
 
 > ```
-> Accept-Encoding:
->  gzip, deflate
+> Accept-Encoding: gzip, deflate
 > ```
 
 ### 2.6 缺点
@@ -192,15 +178,13 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 为了解决这个问题，有些浏览器在请求时，用了一个非标准的`Connection`字段。
 
 > ```
-> Connection:
->  keep-alive
+> Connection: keep-alive
 > ```
 
 这个字段要求服务器不要关闭TCP连接，以便其他请求复用。服务器同样回应这个字段。
 
 > ```
-> Connection:
->  keep-alive
+> Connection: keep-alive
 > ```
 
 一个可以复用的TCP连接就建立了，直到客户端或服务器主动关闭连接。但是，这不是标准字段，不同实现的行为可能不一致，因此不是根本的解决办法。
