@@ -14,7 +14,7 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 
 最早版本是1991年发布的0.9版。该版本极其简单，只有一个命令`GET`。
 
-> ```js
+> ```go
 > GET /index.html
 > ```
 
