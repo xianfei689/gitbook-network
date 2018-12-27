@@ -1,6 +1,6 @@
 # HTTP状态码
 
-返回状态码 returnCode [ ](https://gitee.com/zhouxianfei/zhouxf.front.doc/wikis/%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81%E7%A0%81%20%20returnCode?parent=%E7%BD%91%E7%BB%9C)
+返回状态码 returnCode [ ](https://gitee.com/zhouxianfei/zhouxf.front.doc/wikis/返回状态码  returnCode?parent=网络)
 
 * 200: '服务器成功返回请求的数据。',
 * 201: '新建或修改数据成功。',
@@ -17,8 +17,6 @@
 * 502: '网关错误。',
 * 503: '服务不可用，服务器暂时过载或维护。',
 * 504: '网关超时。',
-
-
 
 * http状态码
 
@@ -54,4 +52,6 @@
   * 503 服务不可用，停机维护，指暂停状态。
   * 504 网关超时
   * 505 HTTP版本不受支持，不支持请求所用的HTTP版本
+
+
 
