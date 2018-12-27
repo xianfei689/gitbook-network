@@ -20,7 +20,7 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 
 上面命令表示，TCP 连接（connection）建立后，客户端向服务器请求（request）网页`index.html`。
 
-协议规定，服务器只能回应HTML格式的字符串，不能回应别的格式。
+协议规定，**服务器只能回应HTML格式的字符串**，不能回应别的格式。
 
 > ```html
 > <html>
