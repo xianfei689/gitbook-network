@@ -250,8 +250,7 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 因此，1.1版规定可以不使用`Content-Length`字段，而使用["分块传输编码"](https://zh.wikipedia.org/wiki/分块传输编码)（chunked transfer encoding）。只要请求或回应的头信息有`Transfer-Encoding`字段，就表明回应将由数量未定的数据块组成。
 
 > ```
-> Transfer-Encoding:
->  chunked
+> Transfer-Encoding: chunked
 > ```
 
 每个非空的数据块之前，会有一个16进制的数值，表示这个块的长度。最后是一个大小为0的块，就表示本次回应的数据发送完了。下面是一个例子。
