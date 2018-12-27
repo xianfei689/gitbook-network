@@ -6,8 +6,6 @@ HTTP 协议是互联网的基础协议，也是网页开发的必备知识，最
 
 ![](/assets/import.png)
 
-
-
 ## 一、HTTP/0.9
 
 HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html)。它不涉及数据包（packet）传输，主要规定了客户端和服务器之间的通信格式，默认使用80端口。
@@ -49,7 +47,6 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 下面是一个1.0版的HTTP请求的例子。
 
 > ```
->
 > GET / HTTP/1.0
 >
 > User-Agent:
@@ -57,7 +54,6 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 >
 > Accept:
 >  */*
->
 > ```
 
 可以看到，这个格式与0.9版有很大变化。
@@ -69,7 +65,6 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 服务器的回应如下。
 
 > ```
->
 > HTTP/1.0 200 OK 
 >
 > Content-Type:
@@ -129,9 +124,7 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 除了预定义的类型，厂商也可以自定义类型。
 
 > ```
->
 > application/vnd.debian.binary-package
->
 > ```
 
 上面的类型表明，发送的是Debian系统的二进制数据包。
@@ -141,7 +134,6 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 > ```
 > Content-Type:
 >  text/html; charset=utf-8
->
 > ```
 
 上面的类型表明，发送的是网页，而且编码是UTF-8。
@@ -151,7 +143,6 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 > ```
 > Accept:
 >  */*
->
 > ```
 
 上面代码中，客户端声明自己可以接受任何格式的数据。
@@ -183,7 +174,6 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 >
 > Content-Encoding:
 >  deflate
->
 > ```
 
 客户端在请求时，用`Accept-Encoding`字段说明自己可以接受哪些压缩方法。
@@ -191,7 +181,6 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 > ```
 > Accept-Encoding:
 >  gzip, deflate
->
 > ```
 
 ### 2.6 缺点
@@ -205,7 +194,6 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 > ```
 > Connection:
 >  keep-alive
->
 > ```
 
 这个字段要求服务器不要关闭TCP连接，以便其他请求复用。服务器同样回应这个字段。
@@ -213,7 +201,6 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 > ```
 > Connection:
 >  keep-alive
->
 > ```
 
 一个可以复用的TCP连接就建立了，直到客户端或服务器主动关闭连接。但是，这不是标准字段，不同实现的行为可能不一致，因此不是根本的解决办法。
@@ -231,7 +218,6 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 > ```
 > Connection:
 >  close
->
 > ```
 
 目前，对于同一个域名，大多数浏览器允许同时建立6个持久连接。
@@ -249,7 +235,6 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 > ```
 > Content-Length:
 >  3495
->
 > ```
 
 上面代码告诉浏览器，本次回应的长度是3495个字节，后面的字节就属于下一个回应了。
@@ -262,18 +247,16 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 
 对于一些很耗时的动态操作来说，这意味着，服务器要等到所有操作完成，才能发送数据，显然这样的效率不高。更好的处理方法是，产生一块数据，就发送一块，采用"流模式"（stream）取代"缓存模式"（buffer）。
 
-因此，1.1版规定可以不使用`Content-Length`字段，而使用["分块传输编码"](https://zh.wikipedia.org/wiki/%E5%88%86%E5%9D%97%E4%BC%A0%E8%BE%93%E7%BC%96%E7%A0%81)（chunked transfer encoding）。只要请求或回应的头信息有`Transfer-Encoding`字段，就表明回应将由数量未定的数据块组成。
+因此，1.1版规定可以不使用`Content-Length`字段，而使用["分块传输编码"](https://zh.wikipedia.org/wiki/分块传输编码)（chunked transfer encoding）。只要请求或回应的头信息有`Transfer-Encoding`字段，就表明回应将由数量未定的数据块组成。
 
 > ```
 > Transfer-Encoding:
 >  chunked
->
 > ```
 
 每个非空的数据块之前，会有一个16进制的数值，表示这个块的长度。最后是一个大小为0的块，就表示本次回应的数据发送完了。下面是一个例子。
 
 > ```
->
 > HTTP/1.1 200 OK
 >
 > Content-Type:
@@ -295,8 +278,6 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 > sequence
 >
 > 0
->
->
 > ```
 
 ### 3.5 其他功能
@@ -306,16 +287,14 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 另外，客户端请求的头信息新增了`Host`字段，用来指定服务器的域名。
 
 > ```
-> Host:
->  www.example.com
->
+> Host: www.example.com
 > ```
 
 有了`Host`字段，就可以将请求发往同一台服务器上的不同网站，为虚拟主机的兴起打下了基础。
 
 ### 3.6 缺点
 
-虽然1.1版允许复用TCP连接，但是同一个TCP连接里面，所有的数据通信是按次序进行的。服务器只有处理完一个回应，才会进行下一个回应。要是前面的回应特别慢，后面就会有许多请求排队等着。这称为["队头堵塞"](https://zh.wikipedia.org/wiki/%E9%98%9F%E5%A4%B4%E9%98%BB%E5%A1%9E)（Head-of-line blocking）。
+虽然1.1版允许复用TCP连接，但是同一个TCP连接里面，所有的数据通信是按次序进行的。服务器只有处理完一个回应，才会进行下一个回应。要是前面的回应特别慢，后面就会有许多请求排队等着。这称为["队头堵塞"](https://zh.wikipedia.org/wiki/队头阻塞)（Head-of-line blocking）。
 
 为了避免这个问题，只有两种方法：一是减少请求数，二是同时多开持久连接。这导致了很多的网页优化技巧，比如合并脚本和样式表、将图片嵌入CSS代码、域名分片（domain sharding）等等。如果HTTP协议设计得更好一些，这些额外的工作是可以避免的。
 
