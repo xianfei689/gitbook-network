@@ -258,12 +258,8 @@ TCP连接的新建成本很高，因为需要客户端和服务器三次握手�
 
 > ```
 > HTTP/1.1 200 OK
->
-> Content-Type:
->  text/plain
->
-> Transfer-Encoding:
->  chunked
+> Content-Type: text/plain
+> Transfer-Encoding: chunked
 >
 > 25
 > This is the data in the first chunk
