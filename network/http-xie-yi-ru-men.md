@@ -22,7 +22,7 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 
 协议规定，服务器只能回应HTML格式的字符串，不能回应别的格式。
 
-> ```js
+> ```html
 > <html>
 >   <body>Hello World</body>
 > </html>
