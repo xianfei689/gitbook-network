@@ -42,7 +42,7 @@
 * response，响应
   * 响应头 header
 
-```javascript
+```json
 {
   'Age':12,//原始服务器到代理缓存形成的估算时间
   'Content-Type':'text/html;charts=utf-8',
