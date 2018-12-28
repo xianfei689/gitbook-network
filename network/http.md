@@ -14,7 +14,7 @@
 
   * 请求头 header
 
-```javascript
+```json
 {
   'Accept':'text/plain,text/html',/*指定客户端能够接受的内容类型，也可以是星号  */
   'Accept-Encoding':'gzip, deflate, br',/*指定浏览器可以支持的web服务器返回内容压缩编码类型。*/
