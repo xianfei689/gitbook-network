@@ -294,7 +294,7 @@ DNS服务器根据域名的层级，进行分级查询。
 > Name:   github.map.fastly.net
 > Address: 103.245.222.133
 >
-> > 
+> >
 > ```
 
 **（3）whois 命令**
@@ -302,9 +302,7 @@ DNS服务器根据域名的层级，进行分级查询。
 `whois`命令用来查看域名的注册情况。
 
 > ```
-> $ whois github
-> .
-> com
+> $ whois github.com
 > ```
 
 # 十、参考链接
