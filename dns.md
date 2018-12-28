@@ -226,36 +226,12 @@ DNS服务器根据域名的层级，进行分级查询。
 `PTR`记录用于从IP地址反查域名。`dig`命令的`-x`参数用于查询`PTR`记录。
 
 > ```
-> $ dig 
-> -
-> x 
-> 192.30
-> .
-> 252.153
-> .
-> .
-> .
-> ;
-> ;
->  ANSWER SECTION
-> :
-> 153.252
-> .
-> 30.192
-> .
-> in
-> -
-> addr
-> .
-> arpa
-> .
-> 3600
->  IN    PTR pages
-> .
-> github
-> .
-> com
-> .
+> $ dig -x 192.30.252.153
+>
+> ...
+>
+> ;; ANSWER SECTION:
+> 153.252.30.192.in-addr.arpa. 3600 IN    PTR pages.github.com.
 > ```
 
 上面结果显示，`192.30.252.153`这台服务器的域名是`pages.github.com`。
@@ -265,15 +241,9 @@ DNS服务器根据域名的层级，进行分级查询。
 `dig`命令可以查看指定的记录类型。
 
 > ```
-> $ dig a github
-> .
-> com
-> $ dig ns github
-> .
-> com
-> $ dig mx github
-> .
-> com
+> $ dig a github.com
+> $ dig ns github.com
+> $ dig mx github.com
 > ```
 
 ## 九、其他DNS工具
