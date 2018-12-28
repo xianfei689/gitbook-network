@@ -179,22 +179,14 @@ DNS服务器根据域名的层级，进行分级查询。
 
 > ```
 > $ dig ns com
-> $ dig ns stackexchange
-> .
-> com
+> $ dig ns stackexchange.com
 > ```
 
 `+short`参数可以显示简化的结果。
 
 > ```
-> $ dig 
-> +
-> short ns com
-> $ dig 
-> +
-> short ns stackexchange
-> .
-> com
+> $ dig +short ns com
+> $ dig +short ns stackexchange.com
 > ```
 
 ## 八、DNS的记录类型
@@ -218,50 +210,13 @@ DNS服务器根据域名的层级，进行分级查询。
 `CNAME`记录主要用于域名的内部跳转，为服务器配置提供灵活性，用户感知不到。举例来说，`facebook.github.io`这个域名就是一个`CNAME`记录。
 
 > ```
-> $ dig facebook
-> .
-> github
-> .
-> io
+> $ dig facebook.github.io
 >
+> ...
 >
-> .
-> .
-> .
-> ;
-> ;
->  ANSWER SECTION
-> :
->
-> facebook
-> .
-> github
-> .
-> io
-> .
-> 3370
->     IN  CNAME   github
-> .
-> map
-> .
-> fastly
-> .
-> net
-> .
->
-> github
-> .
-> map
-> .
-> fastly
-> .
-> net
-> .
-> 600
->  IN  A   
-> 103.245
-> .
-> 222.133
+> ;; ANSWER SECTION:
+> facebook.github.io. 3370    IN  CNAME   github.map.fastly.net.
+> github.map.fastly.net.  600 IN  A   103.245.222.133
 > ```
 
 上面结果显示，`facebook.github.io`的CNAME记录指向`github.map.fastly.net`。也就是说，用户查询`facebook.github.io`的时候，实际上返回的是`github.map.fastly.net`的IP地址。这样的好处是，变更服务器IP地址的时候，只要修改`github.map.fastly.net`这个域名就可以了，用户的`facebook.github.io`域名不用修改。
