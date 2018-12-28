@@ -255,145 +255,27 @@ DNS服务器根据域名的层级，进行分级查询。
 `host`命令可以看作`dig`命令的简化版本，返回当前请求域名的各种记录。
 
 > ```
-> $ host github
-> .
-> com
+> $ host github.com
 >
-> github
-> .
-> com has address 
-> 192.30
-> .
-> 252.121
+> github.com has address 192.30.252.121
+> github.com mail is handled by 5 ALT2.ASPMX.L.GOOGLE.COM.
+> github.com mail is handled by 10 ALT4.ASPMX.L.GOOGLE.COM.
+> github.com mail is handled by 10 ALT3.ASPMX.L.GOOGLE.COM.
+> github.com mail is handled by 5 ALT1.ASPMX.L.GOOGLE.COM.
+> github.com mail is handled by 1 ASPMX.L.GOOGLE.COM.
 >
-> github
-> .
-> com mail is handled by 
-> 5
->  ALT2
-> .
-> ASPMX
-> .
-> L
-> .
-> GOOGLE
-> .
-> COM
-> .
+> $ host facebook.github.com
 >
-> github
-> .
-> com mail is handled by 
-> 10
->  ALT4
-> .
-> ASPMX
-> .
-> L
-> .
-> GOOGLE
-> .
-> COM
-> .
->
-> github
-> .
-> com mail is handled by 
-> 10
->  ALT3
-> .
-> ASPMX
-> .
-> L
-> .
-> GOOGLE
-> .
-> COM
-> .
->
-> github
-> .
-> com mail is handled by 
-> 5
->  ALT1
-> .
-> ASPMX
-> .
-> L
-> .
-> GOOGLE
-> .
-> COM
-> .
->
-> github
-> .
-> com mail is handled by 
-> 1
->  ASPMX
-> .
-> L
-> .
-> GOOGLE
-> .
-> COM
-> .
->
->
-> $ host facebook
-> .
-> github
-> .
-> com
->
-> facebook
-> .
-> github
-> .
-> com is an alias 
-> for
->  github
-> .
-> map
-> .
-> fastly
-> .
-> net
-> .
->
-> github
-> .
-> map
-> .
-> fastly
-> .
-> net has address 
-> 103.245
-> .
-> 222.133
+> facebook.github.com is an alias for github.map.fastly.net.
+> github.map.fastly.net has address 103.245.222.133
 > ```
 
 `host`命令也可以用于逆向查询，即从IP地址查询域名，等同于`dig -x <ip>`。
 
 > ```
-> $ host 
-> 192.30
-> .
-> 252.153
-> 153.252
-> .
-> 30.192
-> .
-> in
-> -
-> addr
-> .
-> arpa domain name pointer pages
-> .
-> github
-> .
-> com
-> .
+> $ host 192.30.252.153
+>
+> 153.252.30.192.in-addr.arpa domain name pointer pages.github.com.
 > ```
 
 **（2）nslookup 命令**
@@ -403,62 +285,16 @@ DNS服务器根据域名的层级，进行分级查询。
 > ```
 > $ nslookup
 >
+> > facebook.github.io
+> Server:     192.168.1.253
+> Address:    192.168.1.253#53
 >
-> >
->  facebook
-> .
-> github
-> .
-> io
-> Server
-> :
-> 192.168
-> .
-> 1.253
+> Non-authoritative answer:
+> facebook.github.io  canonical name = github.map.fastly.net.
+> Name:   github.map.fastly.net
+> Address: 103.245.222.133
 >
-> Address
-> :
-> 192.168
-> .
-> 1.253
-> #53
->
->
-> Non
-> -
-> authoritative answer
-> :
->
-> facebook
-> .
-> github
-> .
-> io  canonical name 
-> =
->  github
-> .
-> map
-> .
-> fastly
-> .
-> net
-> .
->
-> Name
-> :
->    github
-> .
-> map
-> .
-> fastly
-> .
-> net
-> Address
-> :
-> 103.245
-> .
-> 222.133
-> >
+> > 
 > ```
 
 **（3）whois 命令**
