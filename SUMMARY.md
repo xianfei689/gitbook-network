@@ -1,13 +1,14 @@
 # Summary
 
 * [Network](README.md)
-* [根域名的知识](gen-yu-ming-de-zhi-shi.md)
+* [DNS](dns.md)
 
 ## network
 
 * [HTTP](network/http.md)
 * [互联网协议入门（一）](network/hu-lian-wang-xie-yi-ru-men-ff08-yi-ff09.md)
 * [互联网协议入门（二）](network/hu-lian-wang-xie-yi-ru-men-ff08-er-ff09.md)
+* [根域名的知识](gen-yu-ming-de-zhi-shi.md)
 * [HTTP 协议入门](network/http-xie-yi-ru-men.md)
 * [HTTP状态码](network/http-zhuang-tai-ma.md)
 * [网络安全问题](network/wang-luo-an-quan-wen-ti.md)
