@@ -1,6 +1,7 @@
 # Summary
 
 * [Network](README.md)
+* [根域名的知识](gen-yu-ming-de-zhi-shi.md)
 
 ## network
 

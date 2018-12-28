@@ -150,7 +150,7 @@ HTTP 是基于 TCP/IP 协议的[**应用层协议**](http://www.ruanyifeng.com/b
 > ```
 > <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 > <!-- 等同于 -->
-> <meta charset="utf-8" /> 
+> <meta charset="utf-8" />
 > ```
 
 ### 2.5 Content-Encoding 字段
