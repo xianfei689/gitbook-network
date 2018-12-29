@@ -86,9 +86,10 @@ HTTP/1.1 200 Ok
 
 这时，服务器回应 303。
 
-> HTTP/1.1 303 See Other  
-> Location:  
-> /stars/97865
+```
+HTTP/1.1 303 See Other 
+Location: /stars/97865
+```
 
 303 see other
 
