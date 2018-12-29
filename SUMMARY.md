@@ -1,13 +1,13 @@
 # Summary
 
 * [Network](README.md)
-* [DNS](dns.md)
-* [TCP 协议简介](tcp-xie-yi-jian-jie.md)
 
-## network
+## HTTP
 
 * [HTTP](network/http.md)
 * [互联网协议入门（一）](network/hu-lian-wang-xie-yi-ru-men-ff08-yi-ff09.md)
+* [DNS](dns.md)
+* [TCP 协议简介](tcp-xie-yi-jian-jie.md)
 * [互联网协议入门（二）](network/hu-lian-wang-xie-yi-ru-men-ff08-er-ff09.md)
 * [根域名的知识](gen-yu-ming-de-zhi-shi.md)
 * [HTTP 协议入门](network/http-xie-yi-ru-men.md)
