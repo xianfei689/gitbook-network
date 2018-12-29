@@ -1,0 +1,150 @@
+# 异步 API 的设计
+
+
+
+[](http://www.zhufengpeixun.cn/main/index.html?ref=ruanyifeng)
+
+网站的前后端通信，往往会有异步请求，这时应该怎么设计 API？
+
+我最近读到一篇
+
+[文章](https://farazdagi.com/2014/rest-and-long-running-jobs/)
+
+，作者介绍了他的做法，设计得很精细，我觉得值得借鉴，可以当作异步 API 的标准设计。
+
+![](data:image/png;base64,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)
+
+## 一、同步 API
+
+为了便于比较，先看看同步 API 的设计。下面是一个很简单的例子。
+
+客户端发出一个请求，要求创建资源。
+
+> POST
+> [https://api.service.io/stars](https://api.service.io/stars)
+>  
+> name='Death Star'
+
+服务器回应 201。
+
+> HTTP/1.1 201 Created
+> Location:
+> /stars/12345
+
+201 Created
+
+告诉客户端，请求成功，资源已经创建。新的资源的网址请看
+
+Location
+
+字段。
+
+## 二、异步请求
+
+如果服务器不能立即返回结果，就形成了异步操作。
+
+客户端的请求还是一样的。
+
+> POST
+> [https://api.service.io/stars](https://api.service.io/stars)
+>  
+> name='Death Star'
+
+服务器回应 202。
+
+> HTTP/1.1 202 Accepted
+> Location:
+> /queue/12345
+
+202 Accepted
+
+告诉客户端，请求已经接受，但还没有处理，可以去
+
+Location
+
+字段查询进展。
+
+除了上面的头信息，服务器的回应如果有数据体，可以返回一些有效信息（比如任务完成的估计时间、当前状态等等）。
+
+## 三、查询进展
+
+过了一段时间，客户端就发出请求，查询异步处理的进展。
+
+> GET
+> [https://api.service.io/queue/12345](https://api.service.io/queue/12345)
+
+服务器回应 200。
+
+> HTTP/1.1 200 Ok 
+>  
+> &lt;
+> response
+> &gt;
+> &lt;
+> status
+> &gt;
+> PENDING
+> &lt;
+> /status
+> &gt;
+> &lt;
+> eta
+> &gt;
+> 2 mins.
+> &lt;
+> /eta
+> &gt;
+> &lt;
+> link rel="cancel" method="delete" href="/queue/12345" /
+> &gt;
+> &lt;
+> /response
+> &gt;
+
+200 Ok
+
+告诉客户端，请求成功，具体情况查看数据体。数据体里给出提示，异步操作已成功或还需要等待。
+
+## 四、异步操作成功
+
+有一种特殊情况，用户查询异步操作的进展的时候，可能会希望，如果异步操作已经完成，就直接跳转到新资源。
+
+这时，服务器回应 303。
+
+> HTTP/1.1 303 See Other
+> Location:
+> /stars/97865
+
+303 see other
+
+告诉客户端，重定向到不同的资源。
+
+Location
+
+字段就是跳转的目标，也就是新资源的网址。
+
+## 五、删除查询链接
+
+一旦异步操作完成，客户端可以要求服务器删除查询链接。
+
+> DELETE
+> [https://api.service.io/queue/12345](https://api.service.io/queue/12345)
+
+服务器回应 204。
+
+> HTTP/1.1 204 No Content
+
+204 No Content
+
+告诉客户端，删除成功。以后，客户端再访问这个查询链接，服务器回应
+
+404 Not Found
+
+。
+
+如果客户端不删除查询链接，服务器完成异步任务后，也可以自动删除。客户端再请求这个链接，服务器回应
+
+410 Gone
+
+，表示该链接永久性不再可用。
+

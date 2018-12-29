@@ -1,7 +1,7 @@
 # Summary
 
 * [Network](README.md)
-* [异步 API 的设计](yi-bu-api-de-she-ji.md)
+* [异步 API ](yi-bu-api.md)
 
 ## HTTP
 
@@ -10,6 +10,7 @@
 * [DNS](dns.md)
 * [TCP 协议简介](tcp-xie-yi-jian-jie.md)
 * [互联网协议入门（二）](network/hu-lian-wang-xie-yi-ru-men-ff08-er-ff09.md)
+* [异步 API 的设计](yi-bu-api-de-she-ji.md)
 * [根域名的知识](gen-yu-ming-de-zhi-shi.md)
 * [HTTP 协议入门](network/http-xie-yi-ru-men.md)
 * [HTTP状态码](network/http-zhuang-tai-ma.md)
