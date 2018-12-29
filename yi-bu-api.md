@@ -61,36 +61,20 @@ Location
 过了一段时间，客户端就发出请求，查询异步处理的进展。
 
 ```
-GET https://api.service.io/queue/12345 
+GET https://api.service.io/queue/12345
 ```
 
 服务器回应 200。
 
-> HTTP/1.1 200 Ok  
->   
-> &lt;  
-> response  
-> &gt;  
-> &lt;  
-> status  
-> &gt;  
-> PENDING  
-> &lt;  
-> /status  
-> &gt;  
-> &lt;  
-> eta  
-> &gt;  
-> 2 mins.  
-> &lt;  
-> /eta  
-> &gt;  
-> &lt;  
-> link rel="cancel" method="delete" href="/queue/12345" /  
-> &gt;  
-> &lt;  
-> /response  
-> &gt;
+```
+HTTP/1.1 200 Ok  
+
+<response>
+ <status>PENDING</status>
+  <eta>2 mins.</eta>
+  <link rel="cancel" method="delete" href="/queue/12345" /> 
+</response>
+```
 
 200 Ok
 
