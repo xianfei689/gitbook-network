@@ -60,8 +60,9 @@ Location
 
 过了一段时间，客户端就发出请求，查询异步处理的进展。
 
-> GET  
-> [https://api.service.io/queue/12345](https://api.service.io/queue/12345)
+```
+GET https://api.service.io/queue/12345 
+```
 
 服务器回应 200。
 
