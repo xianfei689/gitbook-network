@@ -103,8 +103,9 @@ Location
 
 一旦异步操作完成，客户端可以要求服务器删除查询链接。
 
-> DELETE  
-> [https://api.service.io/queue/12345](https://api.service.io/queue/12345)
+```
+DELETE https://api.service.io/queue/12345 
+```
 
 服务器回应 204。
 
