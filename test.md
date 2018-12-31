@@ -119,7 +119,7 @@ function processJSON (json) {
 
 </script>
 
- 
+
 
 <script src='http://www.girls.hustonline.net?
 
@@ -146,31 +146,33 @@ callback=processJSON&name=jimmy&age=18'></script>
 
 然后,浏览器收到后,直接执行即可. 这里，我们来模拟一下服务器端盖怎样执行一个JSONP的函数.
 
-> constutil=require\('util'\),
->
-> http=require\('http'\),
->
-> url=require\('url'\);
->
-> letdata=JSON.stringify\({
->
-> message:"I've already received"
->
-> }\);
->
-> http.createServer\(function\(req,res\){
->
-> req=url.parse\(req.url,true\);
->
-> if\(!req.query.callback\)res.end\(\);
->
-> console.log\(\`nameis${req.query.name}andhisageis${req.query.age}\`\);
->
-> res.writeHead\(200,{'Content-Type':'application/javascript'}\)
->
-> res.end\(req.query.callback+"\('"+data+"'\)"\)
->
-> }\).listen\(80\)
+```js
+const util = require('util'),
+
+    http = require('http'),
+
+    url = require('url');
+
+let data = JSON.stringify({
+
+    message:"I've already received"
+
+});
+
+http.createServer(function(req, res) {
+
+    req = url.parse(req.url, true);
+
+    if (!req.query.callback) res.end();
+
+    console.log(`name is  ${req.query.name} and his age is ${req.query.age}`);
+
+    res.writeHead(200, { 'Content-Type': 'application/javascript' })
+
+    res.end(req.query.callback + "('" + data + "')")
+
+}).listen(80)
+```
 
 ok~ 上面基本上就可以完成一个简单的JSONP函数执行。 当然,express 4.x 里面也有相关的JSONP 操作。 有兴趣的同学可以看一看.
 
@@ -192,13 +194,13 @@ then, 我们可以模拟一下实在的JSONP请求.上面是直接将script 写�
 >
 > }
 >
-> sendJSONP\('[http://girls.hustonline.net?name=jimmy','sayName'\](http://girls.hustonline.net?name=jimmy','sayName'\)\);
+> sendJSONP\('\[[http://girls.hustonline.net?name=jimmy','sayName'\]\(http://girls.hustonline.net?name=jimmy','sayName'\)\](http://girls.hustonline.net?name=jimmy','sayName']%28http://girls.hustonline.net?name=jimmy','sayName'%29\)\);
 
 上面就是一个精简版的JSONP了。 另外，也推荐使用jquery的getJSON和$.ajax进行请求.
 
 先看一下getJSON
 
-> $.getJSON\("[http://girls.hustonline.net?callback=?",function\(result\){](http://girls.hustonline.net?callback=?",function%28result%29{)
+> $.getJSON\("\[[http://girls.hustonline.net?callback=?",function\(result\){\]\(http://girls.hustonline.net?callback=?",function\(result\){](http://girls.hustonline.net?callback=?",function%28result%29{]%28http://girls.hustonline.net?callback=?",function%28result%29{)\)
 >
 > console.log\(result\);
 >
@@ -808,7 +810,7 @@ ok~
 
 ![](http://mmbiz.qpic.cn/mmbiz/zPh0erYjkib3X7wWpBElj3yJIrNxEk5GoFMJrEgYWvTA3AskF8E69vRIAJnBKKsvHbiaa94kzYjTZ3gMrnL26sTA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-**发展图谱    
+**发展图谱      
 **
 
 不多说了, 上图~
