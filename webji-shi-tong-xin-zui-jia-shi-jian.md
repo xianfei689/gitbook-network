@@ -1,29 +1,8 @@
 ## WEB即时通信最佳实践 {#activity-name}
 
-唐谢军
-
-[前端大全](javascript:void%280%29;)
-
-_7月1日_
-
-（点击上方公众号，可快速关注）  
 
 
-  
-
-
-> 作者：火头军人 - 唐谢军
->
-> http://mp.weixin.qq.com/s/a2PokX26YbpLwk11CviZDg
-
-  
-
-
-问题  
-
-
-  
-
+问题
 
 传统的浏览器通信方式主要是基于HTTP协议的请求/响应模式。早期必须通过刷新浏览器来更新服务器端的数据，后来出现的Ajax\(`XMLHttpRequest`是核心\)技术可以不用刷新浏览器更新服务器端数据。但是这种模式的问题在于，只能通过客户端主动请求，服务器应答来获得数据，而服务器端有数据变化后无法通过推送方式主动告诉客户端数据的变化。但是随着网络的发展和需求的变化，越来越多的应用场景需要浏览器支持即时的可服务器端推送的通信方式。在HTML5出现之前，没有一个官方的办法可以做到真正意义上的基于web的通信方案。
 
@@ -35,13 +14,9 @@ _7月1日_
 
 #### Ajax JSONP Polling（短轮询）
 
-**实现思路**：客户端通过Ajax（jsonp实现跨域）的方式每隔一小段时间发送一个请求到服务器，服务器立刻返回数据。  
-
+**实现思路**：客户端通过Ajax（jsonp实现跨域）的方式每隔一小段时间发送一个请求到服务器，服务器立刻返回数据。
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/NTzDrVG8ibqnK9SZ9Tw2SzQh3awsXaFqn5C49xTysaR6HoGQwrY9KXXyUL1BnIlKJWq7kUGss9y010LssZhD1ew/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
-  
-
 
 * **优点**：短连接，服务器处理简单，支持跨域、浏览器兼容性较好。
 
@@ -92,13 +67,13 @@ Flash Socket API
 
 ```
 package {
-    import flash.display.Sprite;
-    public class SocketExample extends Sprite {
-        private var socket:CustomSocket;
-        public function SocketExample() {
-            socket = new CustomSocket("localhost", 80);
-        }
-    }
+    import flash.display.Sprite;
+    public class SocketExample extends Sprite {
+        private var socket:CustomSocket;
+        public function SocketExample() {
+            socket = new CustomSocket("localhost", 80);
+        }
+    }
 }
 
 import flash.errors.*;
@@ -106,67 +81,67 @@ import flash.events.*;
 import flash.net.Socket;
 
 class CustomSocket extends Socket {
-    private var response:String;
-    public function CustomSocket(host:String = null, port:uint = 0) {
-        super();
-        configureListeners();
-        if (host && port)  {
-            super.connect(host, port);
-        }
-    }
-    //监听事件
-    private function configureListeners():void {
-        addEventListener(Event.CLOSE, closeHandler);
-        addEventListener(Event.CONNECT, connectHandler);
-        addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-        addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-        addEventListener(ProgressEvent.SOCKET_DATA, socketDataHandler);
-    }
-    //写文本
-    private function writeln(str:String):void {
-        str += "\n";
-        try {
-            writeUTFBytes(str);
-        }
-        catch(e:IOError) {
-            trace(e);
-        }
-    }
-    //发送数据
-    private function sendRequest():void {
-        trace("sendRequest");
-        response = "";
-        writeln("GET /");
-        flush();
-    }
-    //读取数据
-    private function readResponse():void {
-        var str:String = readUTFBytes(bytesAvailable);
-        response += str;
-    }
-    //关闭连接
-    private function closeHandler(event:Event):void {
-        trace("closeHandler: " + event);
-        trace(response.toString());
-    }
-    //连接建立成功
-    private function connectHandler(event:Event):void {
-        trace("connectHandler: " + event);
-        sendRequest();
-    }
-    //io错误
-    private function ioErrorHandler(event:IOErrorEvent):void {
-        trace("ioErrorHandler: " + event);
-    }
-    //安全错误
-    private function securityErrorHandler(event:SecurityErrorEvent):void {
-        trace("securityErrorHandler: " + event);
-    }
-    //接收socket数据
-    private function socketDataHandler(event:ProgressEvent):void {
-        trace("socketDataHandler: " + event);
-        readResponse();
-    }
+    private var response:String;
+    public function CustomSocket(host:String = null, port:uint = 0) {
+        super();
+        configureListeners();
+        if (host && port)  {
+            super.connect(host, port);
+        }
+    }
+    //监听事件
+    private function configureListeners():void {
+        addEventListener(Event.CLOSE, closeHandler);
+        addEventListener(Event.CONNECT, connectHandler);
+        addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+        addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
+        addEventListener(ProgressEvent.SOCKET_DATA, socketDataHandler);
+    }
+    //写文本
+    private function writeln(str:String):void {
+        str += "\n";
+        try {
+            writeUTFBytes(str);
+        }
+        catch(e:IOError) {
+            trace(e);
+        }
+    }
+    //发送数据
+    private function sendRequest():void {
+        trace("sendRequest");
+        response = "";
+        writeln("GET /");
+        flush();
+    }
+    //读取数据
+    private function readResponse():void {
+        var str:String = readUTFBytes(bytesAvailable);
+        response += str;
+    }
+    //关闭连接
+    private function closeHandler(event:Event):void {
+        trace("closeHandler: " + event);
+        trace(response.toString());
+    }
+    //连接建立成功
+    private function connectHandler(event:Event):void {
+        trace("connectHandler: " + event);
+        sendRequest();
+    }
+    //io错误
+    private function ioErrorHandler(event:IOErrorEvent):void {
+        trace("ioErrorHandler: " + event);
+    }
+    //安全错误
+    private function securityErrorHandler(event:SecurityErrorEvent):void {
+        trace("securityErrorHandler: " + event);
+    }
+    //接收socket数据
+    private function socketDataHandler(event:ProgressEvent):void {
+        trace("socketDataHandler: " + event);
+        readResponse();
+    }
 }
 ```
 
@@ -181,9 +156,6 @@ WebSocket是HTML5开始提供的一种浏览器与服务器间进行全双工通
 * **缺点**：部分浏览器不支持（支持的浏览器会越来越多）。
 
 * 应用场景：较新浏览器支持、不受框架限制、较高扩展性。
-
-  
-
 
 浏览器支持情况：
 
@@ -215,9 +187,6 @@ Sec-WebSocket-Version: 13
 
 * Sec-WebSocket-Key：是服务器端需要使用客户端发送的这个Key进行校验，然后返回一个校验过的字符串给客户端，客户端验证通过后才能正式建立Socket连接
 
-  
-
-
 **2、返回握手应答**
 
 服务器返回正确的相应头后，客户端验证后将建立连接，此时状态为OPEN。  
@@ -244,18 +213,18 @@ Sec-WebSocket-Protocol: chat
 ```
 var socket = new WebSocket("ws://localhost:8080");
 socket.onopen = function(evt) { 
-  console.log("socket is open"); 
-  socket.send("Hello World!");
+  console.log("socket is open"); 
+  socket.send("Hello World!");
 };
 socket.onmessage = function(evt) {
-  console.log( "Received data: " + evt.data);
-  socket.close();
+  console.log( "Received data: " + evt.data);
+  socket.close();
 };
 socket.onerror = function(evt) {
-    console.log( "websocket error:" + evt.message);
+    console.log( "websocket error:" + evt.message);
 };
 socket.onclose = function(evt) {
-  console.log("socket is closed.");
+  console.log("socket is closed.");
 };
 ```
 
@@ -313,9 +282,6 @@ socket.io 的名字源于它使用了浏览器支持并采用的 HTML5 WebSocket
 
 * JSONP Polling
 
-  
-
-
 在大部分情境下，你都能通过这些功能选择与浏览器保持类似长连接的功能。
 
 * 优点：跨平台、兼容性好、具有降级功能、所有传输机制接口对外统一、自带心跳。
@@ -323,9 +289,6 @@ socket.io 的名字源于它使用了浏览器支持并采用的 HTML5 WebSocket
 * 缺点：要使用socket.io必须前后端都要用一套框架。
 
 * 适用于：考虑更多兼容性，后端可以使用基于socket.io的框架的情景。（常见服务端实现框架有node.js,Netty-socket.io）
-
-  
-
 
 客户端代码示例：
 
@@ -340,11 +303,11 @@ script src="/socket.io/socket.io.js"
 script
 >
 
-  var socket = io('http://localhost');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
+  var socket = io('http://localhost');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
 
 <
 /script
@@ -361,23 +324,23 @@ var fs = require('fs');
 app.listen(80);
 
 function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
+  fs.readFile(__dirname + '/index.html',
+  function (err, data) {
+    if (err) {
+      res.writeHead(500);
+      return res.end('Error loading index.html');
+    }
 
-    res.writeHead(200);
-    res.end(data);
-  });
+    res.writeHead(200);
+    res.end(data);
+  });
 }
 
 io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
 });
 ```
 
@@ -421,9 +384,6 @@ io.on('connection', function (socket) {
 * WebSocket-Node
 
 * websocketd
-
-  
-
 
 Java实现：
 
